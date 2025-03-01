@@ -1,0 +1,7 @@
+fastapi
+langchain
+openai
+mysql-connector-python
+sqlalchemy
+twilio
+dotenv

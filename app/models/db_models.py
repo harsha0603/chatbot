@@ -1,0 +1,1 @@
+# Defines SQLAlchemy models for structured DB handling
