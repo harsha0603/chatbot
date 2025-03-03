@@ -46,9 +46,6 @@ def get_db_schema():
             columns = [column[0] for column in cursor.fetchall()]
             schema_info[table_name] = columns
 
-        for table, columns in schema_info.items():
-            print(f"📌 {table}: {', '.join(columns)}")
-
     except mysql.connector.Error as e:
         print(f"❌ Error fetching schema: {e}")
         return None
@@ -56,13 +53,7 @@ def get_db_schema():
         cursor.close()
         connection.close()
 
-    return schema_info  # Return schema as a dictionary
-
-
-# 🔹 TEST: Fetch Schema and Print
-schema = get_db_schema()
-
-import json
+    return schema_info
 
 def format_schema_for_llm(schema):
     """
@@ -76,9 +67,5 @@ def format_schema_for_llm(schema):
         formatted_schema.append(f"Table: {table}\nColumns: {', '.join(columns)}")
 
     return "\n\n".join(formatted_schema)
-
-# 🔹 TEST: Convert Schema into LLM-friendly Format
-schema = get_db_schema()
-formatted_schema_text = format_schema_for_llm(schema)
 
 
